@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import LoanRequestUpdateView, LoanRequestDeleteView
 from .views import (
     LoanRequestListCreateView, LoanRequestDetailView,
     TransListCreateView, TransDetailView,
@@ -18,4 +19,8 @@ urlpatterns = [
 
     path('messages/', MessageListCreateView.as_view(), name='message-list'),
     path('messages/<int:pk>/', MessageDetailView.as_view(), name='message-detail'),
+
+    path('loanrequest/<int:pk>/update/', LoanRequestUpdateView.as_view(), name='loanrequest_update'),
+    path('loanrequest/<int:pk>/delete/', LoanRequestDeleteView.as_view(), name='loanrequest_delete'),
+
 ]

@@ -16,10 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from app_mehr.views import LoanRequestViewSet, TransViewSet, ProfileViewSet, MessageViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+
+# ایجاد یک DefaultRouter
+router = DefaultRouter()
+router.register(r'loan-requests', LoanRequestViewSet)
+router.register(r'transactions', TransViewSet)
+router.register(r'profiles', ProfileViewSet)
+router.register(r'messages', MessageViewSet)
 
 
 urlpatterns = [
