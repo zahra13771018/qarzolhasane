@@ -1,12 +1,6 @@
 from django.contrib import admin
-from .models import Profile
+from .models import LoanRequest, Trans, Profile, Message
 
-
-
-try:
-    admin.site.unregister(Profile)
-except admin.sites.NotRegistered:
-    pass
     
 # @admin.register(CustomUser)
 class ProfileUserAdmin(admin.ModelAdmin):
@@ -18,4 +12,9 @@ class ProfileUserAdmin(admin.ModelAdmin):
 
 admin.site.register(Profile, ProfileUserAdmin)
 # در صورتی که به تنظیمات بیشتری نیاز دارید، می‌توانید آن را در اینجا اضافه کنید.
+
+
+admin.site.register(LoanRequest)
+admin.site.register(Trans)
+admin.site.register(Message)
 
