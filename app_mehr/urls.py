@@ -4,7 +4,7 @@ from .views import (
     LoanRequestListCreateView, LoanRequestDetailView,
     TransListCreateView, TransDetailView,
     ProfileListCreateView, ProfileDetailView,
-    MessageListCreateView, MessageDetailView
+    MessageListCreateView, MessageDetailView,
 )
 
 urlpatterns = [
