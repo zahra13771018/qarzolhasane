@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.contrib import admin
 from django.urls import path, include
 from .views import LoanRequestUpdateView, LoanRequestDeleteView
@@ -49,4 +50,28 @@ urlpatterns = [
     # Admin and API routes
     path('admin/', admin.site.urls),
     path('api/', include('app_mehr.urls')),
+=======
+from django.urls import path
+# from .views import (
+#     LoanRequestListCreateView, LoanRequestDetailView,
+#     TransListCreateView, TransDetailView,
+#     ProfileListCreateView, ProfileDetailView,
+#     MessageListCreateView, MessageDetailView
+# )
+from app_mehr import views
+
+urlpatterns = [
+    # path('loan-requests', views.loan_request_list)
+    path('loan-requests/', views.LoanRequestListCreateView.as_view(), name='loan-request-list'),
+    # path('loan-requests/<int:pk>/', LoanRequestDetailView.as_view(), name='loan-request-detail'),
+
+    # path('trans/', TransListCreateView.as_view(), name='trans-list'),
+    # path('trans/<int:pk>/', TransDetailView.as_view(), name='trans-detail'),
+
+    # path('profiles/', ProfileListCreateView.as_view(), name='profile-list'),
+    # path('profiles/<int:pk>/', ProfileDetailView.as_view(), name='profile-detail'),
+
+    # path('messages/', MessageListCreateView.as_view(), name='message-list'),
+    # path('messages/<int:pk>/', MessageDetailView.as_view(), name='message-detail'),
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 ]

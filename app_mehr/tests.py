@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from rest_framework import serializers
 from django.test import TestCase
 from .models import LoanRequest, Trans, Profile, Message
@@ -52,3 +53,8 @@ class MessageSerializerTest(TestCase):
         }
         serializer = MessageSerializer(data=data)
         self.assertTrue(serializer.is_valid())
+=======
+from django.test import TestCase
+
+# Create your tests here.
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17

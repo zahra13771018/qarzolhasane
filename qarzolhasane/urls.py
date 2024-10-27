@@ -16,12 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+<<<<<<< HEAD
 from rest_framework.routers import DefaultRouter
 from app_mehr.views import LoanRequestViewSet, TransViewSet, ProfileViewSet, MessageViewSet
+=======
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+<<<<<<< HEAD
 from app_mehr.views import (
     LoanRequestListCreateView,
     TransListCreateView,
@@ -55,12 +59,15 @@ schema_view = get_schema_view(
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
+=======
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('', views.home, name='home'), 
     path('api/', include('app_mehr.urls')),
     path('api/loan-requests/', LoanRequestListCreateView.as_view(), name='loan_request_list'),
@@ -72,3 +79,7 @@ urlpatterns = [
 ]
 
 
+=======
+    path('api/', include('app_mehr.urls')),
+]
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17

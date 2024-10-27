@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 from django.contrib.auth.models import User, Group, Permission
+=======
+# from django.contrib.auth.models import User, Group, Permission
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 from django.contrib.auth.models import User
 from django.db import models
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 class LoanRequest(models.Model):
 
     LOAN_TYPE_CHOICES =(
