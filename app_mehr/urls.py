@@ -15,7 +15,7 @@ from .views import (
     MessageDetailView,
     LoanRequestUpdateView,
     LoanRequestDeleteView,
-    home,
+    home,  # اضافه کردن view home
 )
 
 # ایجاد یک روتر برای ViewSet ها
@@ -26,7 +26,7 @@ router.register(r'profiles', ProfileViewSet)
 router.register(r'messages', MessageViewSet)
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', home, name='home'),  # اضافه کردن مسیر خالی برای صفحه اصلی
     path('api/', include(router.urls)),  # شامل URLهای روتر
     path('api/loan-requests/', LoanRequestListCreateView.as_view(), name='loan_request_list_create'),
     path('api/loan-requests/<int:pk>/', LoanRequestDetailView.as_view(), name='loan_request_detail'),

@@ -5,6 +5,14 @@ from .models import LoanRequest, Profile, Message, Trans
 from .serializers import ProfileSerializer, MessageSerializer, TransSerializer, LoanRequestSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.views.generic.edit import UpdateView, DeleteView
+from django.http import HttpResponse
+
+
+
+
+def home(request):
+    return HttpResponse("Welcome to my site!")
+
 
 class LoanRequestViewSet(viewsets.ModelViewSet):
     queryset = LoanRequest.objects.all()
