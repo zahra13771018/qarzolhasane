@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-# manage.py file for your Django project
-# Make sure to replace 'qarzolhasane' with the correct settings module if necessary
-
-import os
-import sys
-
-=======
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
 
-
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'qarzolhasane.settings')
@@ -26,9 +16,5 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 if __name__ == '__main__':
     main()

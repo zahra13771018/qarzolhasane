@@ -1,23 +1,41 @@
-from django.contrib import admin
 from django.urls import path, include
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
-
-schema_view = get_schema_view(
-   openapi.Info(
-      title="Your API Title",
-      default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@yourapi.local"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
+from rest_framework.routers import DefaultRouter
+from .views import (
+    LoanRequestViewSet,
+    TransViewSet,
+    ProfileViewSet,
+    MessageViewSet,
+    LoanRequestListCreateView,
+    LoanRequestDetailView,
+    TransListCreateView,
+    TransDetailView,
+    ProfileListCreateView,
+    ProfileDetailView,
+    MessageListCreateView,
+    MessageDetailView,
+    LoanRequestUpdateView,
+    LoanRequestDeleteView,
+    home,
 )
 
+# ایجاد یک روتر برای ViewSet ها
+router = DefaultRouter()
+router.register(r'loan-requests', LoanRequestViewSet)
+router.register(r'trans', TransViewSet)
+router.register(r'profiles', ProfileViewSet)
+router.register(r'messages', MessageViewSet)
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('your_app.urls')),  # این را با نام اپلیکیشن خود جایگزین کنید
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('', home, name='home'),
+    path('api/', include(router.urls)),  # شامل URLهای روتر
+    path('api/loan-requests/', LoanRequestListCreateView.as_view(), name='loan_request_list_create'),
+    path('api/loan-requests/<int:pk>/', LoanRequestDetailView.as_view(), name='loan_request_detail'),
+    path('api/trans/', TransListCreateView.as_view(), name='trans_list_create'),
+    path('api/trans/<int:pk>/', TransDetailView.as_view(), name='trans_detail'),
+    path('api/profiles/', ProfileListCreateView.as_view(), name='profile_list_create'),
+    path('api/profiles/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
+    path('api/messages/', MessageListCreateView.as_view(), name='message_list_create'),
+    path('api/messages/<int:pk>/', MessageDetailView.as_view(), name='message_detail'),
+    path('loan-requests/update/<int:pk>/', LoanRequestUpdateView.as_view(), name='loan_request_update'),
+    path('loan-requests/delete/<int:pk>/', LoanRequestDeleteView.as_view(), name='loan_request_delete'),
 ]

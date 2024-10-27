@@ -1,34 +1,31 @@
 from django.contrib import admin
-<<<<<<< HEAD
-from .models import Profile
+from .models import LoanRequest, Profile, Message, Trans
 
+# ثبت مدل LoanRequest در پنل ادمین
+@admin.register(LoanRequest)
+class LoanRequestAdmin(admin.ModelAdmin):
+    list_display = ('loan_type', 'request_type', 'loan_amount', 'status', 'due_date')
+    search_fields = ('loan_type', 'request_type', 'status')
+    list_filter = ('status', 'due_date')
 
+# ثبت مدل Profile در پنل ادمین
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'phone_number', 'national_id')
+    search_fields = ('user__username', 'phone_number', 'national_id')
+    list_filter = ('user',)
 
-try:
-    admin.site.unregister(Profile)
-except admin.sites.NotRegistered:
-    pass
-=======
-from .models import LoanRequest, Trans, Profile, Message
+# ثبت مدل Message در پنل ادمین
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'priority', 'created_at')
+    search_fields = ('title', 'description')
+    list_filter = ('priority',)
 
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
-    
-# @admin.register(CustomUser)
-class ProfileUserAdmin(admin.ModelAdmin):
-    list_display = ('user__username', 'user__email', 'user__first_name', 'user__last_name', 'user__is_active', 'user__is_staff')
-    search_fields = ('username', 'email')
-    exclude = ('national_code', 'father_name', 'mobile_number', 
-               'essential_contact_number', 'home_phone', 
-               'shaba_number', 'address')
+# ثبت مدل Trans در پنل ادمین
+@admin.register(Trans)
+class TransAdmin(admin.ModelAdmin):
+    list_display = ('user', 'amount', 'transaction_type', 'created_at')
+    search_fields = ('user__username', 'transaction_type')
+    list_filter = ('transaction_type',)
 
-admin.site.register(Profile, ProfileUserAdmin)
-# در صورتی که به تنظیمات بیشتری نیاز دارید، می‌توانید آن را در اینجا اضافه کنید.
-
-<<<<<<< HEAD
-=======
-
-admin.site.register(LoanRequest)
-admin.site.register(Trans)
-admin.site.register(Message)
-
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
