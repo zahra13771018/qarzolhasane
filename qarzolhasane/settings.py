@@ -11,14 +11,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-<<<<<<< HEAD
 import os
-=======
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,12 +26,7 @@ SECRET_KEY = 'django-insecure-r#2n(4nl)b1z=0a8j3qaq16%dg^ot0ef-^2qb=fkc+#8*$*1x1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-username.pythonanywhere.com']
-=======
 ALLOWED_HOSTS = ['zah1377.pythonanywhere.com', '127.0.0.1']
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
-
 
 # Application definition
 
@@ -45,12 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework_simplejwt',
     'rest_framework',
-<<<<<<< HEAD
+    'rest_framework_simplejwt',
     'drf_yasg',
-=======
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
     'app_mehr',
 ]
 
@@ -84,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qarzolhasane.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -94,7 +82,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -114,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -126,51 +112,26 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-<<<<<<< HEAD
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # برای جمع‌آوری فایل‌ها
 STATICFILES_DIRS = [
     # به عنوان مثال: os.path.join(BASE_DIR, 'your_static_dir'),
 ]
-=======
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'app_mehr.Profile'  # 'yourapp' را با نام اپلیکیشن خود جایگزین کنید
-
-
-import sentry_sdk
-
-SENTRY_DSN = 'https://<public_key>@sentry.io/<project_id>'
-
-
-
-# Set traces_sample_rate to 1.0 to capture 100%
-# of transactions for Tracing.
-# We recommend adjusting this value in production.
-enable_tracing=True,
-traces_sample_rate=1.0,
-
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-<<<<<<< HEAD
+        'rest_framework.authentication.SessionAuthentication',
     ),
 }
-
-
-from datetime import timedelta
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -179,12 +140,4 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 APPEND_SLASH = True
-=======
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-}
->>>>>>> 261e643f41a1a5280e7867d74b276d56f5fe6f17
