@@ -11,8 +11,16 @@ class LoanRequestSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['id', 'user', 'phone_number', 'national_id', 'profile_picture', 
-                  'national_id_picture', 'guarantor_search']
+        fields = [
+            'id',
+            'user',
+            'first_name',
+            'phone_number',
+            'national_id',
+            'profile_picture', 
+            'national_id_picture',
+            'guarantor_search'
+        ]
         read_only_fields = ['id', 'user']
 
 class MessageSerializer(serializers.ModelSerializer):
