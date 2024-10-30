@@ -18,7 +18,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
-        fields = ['id', 'title', 'description', 'priority', 'created_at']
+        fields = ['id', 'title', 'description', 'ticket_priority', 'created_at']  # تغییر priority به ticket_priority
         read_only_fields = ['id', 'created_at']
 
 class TransSerializer(serializers.ModelSerializer):

@@ -6,6 +6,8 @@ from .serializers import ProfileSerializer, MessageSerializer, TransSerializer, 
 from rest_framework.permissions import IsAuthenticated
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse
+from app_mehr import views  # یا فقط وارد کردن ویوهای خاص
+
 
 
 
