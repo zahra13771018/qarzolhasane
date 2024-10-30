@@ -71,7 +71,7 @@ class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class LoanRequestUpdateView(UpdateView):
     model = LoanRequest
-    fields = ['loan_type', 'request_type', 'loan_amount', 'deposit_amount', 'status', 'due_date', 'installment_number', 'total_deposit_amount', 'rank']
+    fields = ['loan_type', 'request_type', 'loan_amount', 'deposit_amount', 'status', 'due_date']
     template_name = 'loan_request_update.html'  # نام قالب HTML برای فرم آپدیت
     success_url = reverse_lazy('loan_request_list')  # پس از به‌روزرسانی به این URL هدایت شود
 

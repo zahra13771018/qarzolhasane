@@ -5,7 +5,7 @@ class LoanRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanRequest
         fields = ['id', 'loan_type', 'request_type', 'loan_amount', 'deposit_amount', 
-                  'status', 'due_date', 'installment_number', 'total_deposit_amount', 'rank']
+                  'status', 'due_date']
         read_only_fields = ['id']
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -32,5 +32,5 @@ class MessageSerializer(serializers.ModelSerializer):
 class TransSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trans
-        fields = ['id', 'user', 'amount', 'transaction_type', 'created_at']
-        read_only_fields = ['id', 'created_at', 'user']
+        fields = ['id', 'user']
+        read_only_fields = ['id', 'user']
