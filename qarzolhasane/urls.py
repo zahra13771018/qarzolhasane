@@ -31,8 +31,9 @@ router.register(r'messages', MessageViewSet)
 
 urlpatterns = [
    path('admin/', admin.site.urls),  # آدرس برای ورود به بخش مدیریت
+   path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+   path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
    path('api/', include(router.urls)),  # شامل URLهای روتر
-    # اگر از ویوهای عادی استفاده می‌کنید به این صورت بنویسید:
    path('api/profiles/', ProfileViewSet.as_view({'get': 'list', 'post': 'create'}), name='profile_list_create'),
    path('api/profiles/<int:pk>/', ProfileViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='profile_detail'),
    path('api/messages/', MessageViewSet.as_view({'get': 'list', 'post': 'create'}), name='message_list_create'),
@@ -41,8 +42,7 @@ urlpatterns = [
    path('api/loan-requests/<int:pk>/', LoanRequestViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='loan_request_detail'),
    path('api/trans/', TransViewSet.as_view({'get': 'list', 'post': 'create'}), name='trans_list_create'),
    path('api/trans/<int:pk>/', TransViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name='trans_detail'),
-   path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-   path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+   
    path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
