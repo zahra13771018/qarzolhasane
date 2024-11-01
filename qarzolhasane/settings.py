@@ -117,9 +117,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # برای جمع‌آوری فایل‌ها
-STATICFILES_DIRS = [
-    # به عنوان مثال: os.path.join(BASE_DIR, 'your_static_dir'),
-]
+# STATICFILES_DIRS = [
+#     # به عنوان مثال: os.path.join(BASE_DIR, 'your_static_dir'),
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

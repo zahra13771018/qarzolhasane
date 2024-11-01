@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.conf import settings  # برای استفاده از کاربر پیش‌فرض
 
 class Loan(models.Model):
     SHORT_TERM = 'short'
@@ -39,19 +40,14 @@ class LoanRequest(models.Model):
         (APPROVED, 'تایید شده'),
         (REJECTED, 'رد شده'),
     ]
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loan_requests')  # ارتباط با کاربر
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loan_requests')  # ارتباط با کاربر
     loan_type = models.ForeignKey('Loan', on_delete=models.CASCADE, related_name='loan_requests')  # نوع وام
-    amount_requested = models.DecimalField(max_digits=10, decimal_places=2)  # مبلغ درخواست شده
+    amount_requested = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # مبلغ درخواست شده
     status = models.CharField(max_length=10, choices=LOAN_STATUS_CHOICES, default=PENDING)  # وضعیت درخواست
     request_date = models.DateTimeField(auto_now_add=True)  # تاریخ ثبت درخواست
     updated_at = models.DateTimeField(auto_now=True)  # تاریخ آخرین بروزرسانی
 
-    def __str__(self):
-        return f"{self.user.username} - {self.amount_requested} تومان - {self.get_status_display()}"
-
-
-class LoanRequest(models.Model):
     LOAN_TYPE_CHOICES = [
         ('short', 'کوتاه‌مدت'),
         ('long', 'بلندمدت'),
@@ -67,9 +63,9 @@ class LoanRequest(models.Model):
         ('approved', 'تایید شده'),
         ('rejected', 'رد شده'),
     ]
-
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     # کاربری که درخواست وام را ارسال کرده
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loan_requests')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='loan_requests')
 
     # نوع وام (کوتاه‌مدت یا بلندمدت)
     loan_type = models.CharField(max_length=10, choices=LOAN_TYPE_CHOICES)
@@ -97,12 +93,11 @@ class LoanRequest(models.Model):
     def __str__(self):
         return f"{self.user.username} - {self.loan_amount} تومان - {self.get_loan_type_display()} - {self.get_request_type_display()}"
 
-# Admin Class
-
 
 class Trans(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     # فیلدهای واریزی و تاریخ‌ها
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')  # کاربر مرتبط
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions')  # کاربر مرتبط
     title = models.CharField(max_length=255)
     status = models.CharField(max_length=50)
     receipt = models.FileField(upload_to='receipts/', null=True, blank=True)  # رسید فیش
@@ -148,8 +143,8 @@ class Trans(models.Model):
     
 
 class Profile(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     # اطلاعات شخصی و کارت
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')  # ارتباط با مدل کاربر
     first_name = models.CharField(max_length=100)  # نام
     last_name = models.CharField(max_length=100)  # نام خانوادگی
     father_name = models.CharField(max_length=100)  # نام پدر
@@ -194,15 +189,12 @@ class Profile(models.Model):
         return cls.objects.count()
     
 class Message(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='support_messages')  # کاربر ارسال‌کننده پیام
-    message_content = models.TextField()  # محتوای پیام پشتیبانی
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='support_messages')  # کاربر ارسال‌کننده پیام
+    message_content = models.TextField(max_length=255, default='')  # محتوای پیام پشتیبانی
     created_at = models.DateTimeField(auto_now_add=True)  # تاریخ ارسال پیام
     updated_at = models.DateTimeField(auto_now=True)  # تاریخ آخرین بروزرسانی پیام
 
-    def __str__(self):
-        return f"پیام از {self.user.username} - تاریخ: {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
-    
-class Message(models.Model):
     # عنوان پیام
     title = models.CharField(max_length=255)  # عنوان پیام
 
