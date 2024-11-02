@@ -6,7 +6,6 @@ from .serializers import ProfileSerializer, MessageSerializer, TransSerializer, 
 from rest_framework.permissions import IsAuthenticated
 from django.views.generic.edit import UpdateView, DeleteView
 from django.http import HttpResponse
-from app_mehr import views  # یا فقط وارد کردن ویوهای خاص
 
 
 
@@ -80,5 +79,4 @@ class LoanRequestDeleteView(DeleteView):
     template_name = 'loan_request_confirm_delete.html'  # نام قالب HTML برای تایید حذف
     success_url = reverse_lazy('loan_request_list')  # پس از حذف به این URL هدایت شود
 
-def home(request):
-    return HttpResponse("Welcome to my site!")
+
