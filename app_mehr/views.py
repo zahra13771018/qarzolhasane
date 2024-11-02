@@ -8,8 +8,10 @@ from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
 
+@api_view(['POST'])
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
