@@ -1,22 +1,24 @@
 from rest_framework import serializers
-from .models import LoanRequest, Profile, Message, Trans
+from .models import LoanRequest, Profile, Message, Trans, Sandogh, SandoghCard
+
 
 class LoanRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = LoanRequest
         fields = [
-            'id', 
+            'id',
             'user',  # کاربر درخواست کننده
-            'loan_type', 
-            'request_type', 
-            'loan_amount', 
-            'deposit_amount', 
-            'status', 
+            'loan_type',
+            'request_type',
+            'loan_amount',
+            'deposit_amount',
+            'status',
             'request_date',  # تاریخ ثبت درخواست
             'updated_at',  # تاریخ آخرین بروزرسانی
             'due_date'  # تاریخ سررسید
         ]
         read_only_fields = ['id', 'user', 'request_date', 'updated_at']
+
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,11 +54,12 @@ class ProfileSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'user']
 
+
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = [
-            'id', 
+            'id',
             'user',  # کاربر ارسال‌کننده
             'message_content',  # محتوای پیام
             'created_at',  # تاریخ ارسال پیام
@@ -72,11 +75,12 @@ class MessageSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 
+
 class TransSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trans
         fields = [
-            'id', 
+            'id',
             'user',  # کاربر مرتبط
             'title',  # عنوان تراکنش
             'status',  # وضعیت تراکنش
@@ -99,3 +103,17 @@ class TransSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'user']
 
+
+class SandoghCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SandoghCard
+        fields = '__all__'
+
+
+class SandoghSerializer(serializers.ModelSerializer):
+    cards = SandoghCardSerializer(
+        many=True, read_only=True, source='sandoghcard_set')
+
+    class Meta:
+        model = Sandogh
+        fields = '__all__'

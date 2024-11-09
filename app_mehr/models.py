@@ -140,7 +140,23 @@ class Trans(models.Model):
     @classmethod
     def get_users_not_paid_this_month(cls):
         return cls.objects.filter(has_paid_this_month=False)
+
     
+class Sandogh(models.Model):
+    title = models.CharField(max_length=150, default='')
+    
+    def __str__(self):
+        return self.title
+
+    
+class SandoghCard(models.Model):
+    sandogh = models.ForeignKey(Sandogh, on_delete=models.CASCADE, null=True)
+    owner_name = models.CharField(max_length=150, default='')
+    card_number = models.CharField(max_length=16)
+    
+    def __str__(self):
+        return self.card_number
+
 
 class Profile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
