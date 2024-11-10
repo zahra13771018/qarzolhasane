@@ -144,7 +144,11 @@ SIMPLE_JWT = {
 
 APPEND_SLASH = True
 
+# CORS_ALLOWED_ORIGINS = [
+#     "https://example.com",
+#     "https://another-domain.com",
+# ]
+
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://another-domain.com",
+    "http://localhost:3000",
 ]
