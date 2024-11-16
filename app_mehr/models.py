@@ -161,45 +161,24 @@ class SandoghCard(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     # اطلاعات شخصی و کارت
-    first_name = models.CharField(max_length=100)  # نام
-    last_name = models.CharField(max_length=100)  # نام خانوادگی
-    father_name = models.CharField(max_length=100)  # نام پدر
-    mobile_number = models.CharField(max_length=15)  # شماره موبایل
-    emergency_contact = models.CharField(max_length=15, null=True, blank=True)  # شماره تلفن ضروری
-    address = models.TextField(null=True, blank=True)  # آدرس
-    national_code = models.CharField(max_length=10)  # کد ملی
-    card_number = models.CharField(max_length=16)  # شماره کارت بانکی
-    shaba_number = models.CharField(max_length=24)  # شماره شبا
-    profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)  # عکس پروفایل
-    card_picture = models.ImageField(upload_to='card_pictures/', null=True, blank=True)  # عکس شماره کارت
-    national_id_picture = models.ImageField(upload_to='national_ids/', null=True, blank=True)  # عکس کارت ملی
-    admin_card_info = models.TextField(null=True, blank=True)  # اطلاعات کارت ادمین
-    phone_number = models.CharField(max_length=15, null=True, blank=True)
-    national_id = models.CharField(max_length=10, null=True, blank=True)
-    guarantor_search = models.CharField(max_length=255, null=True, blank=True)
-
-    # تاریخ و ردیف
-    exit_date = models.DateField(null=True, blank=True)  # تاریخ خروج
-    user_rank = models.PositiveIntegerField(null=True, blank=True)  # ردیف یا رتبه کاربر
-
-    # فیلدهای مرتبط با پیام و یادآوری
-    pending_messages = models.TextField(null=True, blank=True)  # پیام‌های در انتظار پاسخ
-    send_message_field = models.TextField(null=True, blank=True)  # فیلد خالی برای ارسال پیام
-    admin_message_notes = models.TextField(null=True, blank=True)  # توضیحات پیام ادمین به کاربر
-    reminder = models.CharField(max_length=255, null=True, blank=True)  # یادآوری برای کاربر
-    allowed_guarantors_count = models.PositiveIntegerField(default=0)  # تعداد مجاز ضامن برای هر کاربر
-
-    # عملیات انصراف
-    withdrawal_operation = models.BooleanField(default=False)  # عملیات انصراف
-
-    # فیلد جستجو
-    search_field = models.JSONField(null=True, blank=True)  # فیلد جستجو به صورت لیست (ذخیره به صورت JSON)
-
-    # متد برای نمایش اطلاعات کاربر
+    first_name = models.CharField(max_length=100) 
+    last_name = models.CharField(max_length=100)  
+    father_name = models.CharField(max_length=100)  
+    mobile_number = models.CharField(max_length=15)  
+    emergency_contact = models.CharField(max_length=15, null=True, blank=True)  
+    address = models.TextField(null=True, blank=True)  
+    national_code = models.CharField(max_length=10)  
+    card_number = models.CharField(max_length=16)  
+    shaba_number = models.CharField(max_length=24) 
+    profile_picture = models.ImageField(upload_to='profiles/', null=True, blank=True)  
+    card_picture = models.ImageField(upload_to='card_pictures/', null=True, blank=True)  
+    national_id_picture = models.ImageField(upload_to='national_ids/', null=True, blank=True)  
+    card_info = models.TextField(null=True, blank=True) 
+    
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.mobile_number}"
     
-    # متد برای محاسبه تعداد اعضای عضو
+    
     @classmethod
     def get_membership_count(cls):
         return cls.objects.count()

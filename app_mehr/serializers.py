@@ -38,19 +38,8 @@ class ProfileSerializer(serializers.ModelSerializer):
             'profile_picture',  # عکس پروفایل
             'card_picture',  # عکس کارت بانکی
             'national_id_picture',  # عکس کارت ملی
-            'admin_card_info',  # اطلاعات کارت ادمین
-            'phone_number',  # شماره تلفن
-            'national_id',  # کد ملی
-            'guarantor_search',  # فیلد جستجوی ضامن
-            'exit_date',  # تاریخ خروج
-            'user_rank',  # رتبه کاربر
-            'pending_messages',  # پیام‌های در انتظار
-            'send_message_field',  # فیلد ارسال پیام
-            'admin_message_notes',  # یادداشت‌های ادمین
-            'reminder',  # یادآوری
-            'allowed_guarantors_count',  # تعداد مجاز ضامن
-            'withdrawal_operation',  # عملیات انصراف
-            'search_field',  # فیلد جستجو
+            'card_info',  # اطلاعات کارت ادمین
+        
         ]
         read_only_fields = ['id', 'user']
 
