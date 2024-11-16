@@ -144,12 +144,20 @@ SIMPLE_JWT = {
 
 APPEND_SLASH = True
 
-CORS_ALLOWED_ORIGINS = [
-    "domin.com", 
+CORS_ALLOWED_ORIGINS =[
+    # "https://your-production-domain.com"
 ]
-
 if DEBUG:
-    CORS_ALLOWED_ORIGINS.append('http://localhost:3000')
-    CORS_ALLOWED_ORIGINS.append('http://localhost')
-    CORS_ALLOWED_ORIGINS.append('http://127.0.0.1')
-    CORS_ALLOWED_ORIGINS.append('http://127.0.0.1.3000')
+#     CORS_ALLOWED_ORIGINS.append("http://localhost:3000"),
+#     CORS_ALLOWED_ORIGINS.append("http://localhost"),
+#     CORS_ALLOWED_ORIGINS.append("http://127.0.0.1"),
+#     CORS_ALLOWED_ORIGINS.append("http://127.0.0.1.3000"),
+# ]
+# ]
+
+    CORS_ALLOWED_ORIGINS += [
+        "http://localhost:3000",
+        "http://localhost",
+        "http://127.0.0.1",
+        "http://127.0.0.1:3000"
+    ]
